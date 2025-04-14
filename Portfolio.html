@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Soli</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #f06292;
+            color: white;
+            padding: 1rem 2rem;
+            text-align: center;
+            border-bottom: 5px solid #ec407a;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+        }
+
+        nav {
+            margin-top: 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffd1dc;
+        }
+
+        .container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-me {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .about-me {
+                flex-wrap: wrap;
+                text-align: center;
+            }
+            .profile-picture {
+                flex: 1 1 100px;
+                max-width: 100px;
+            }
+            .about-text {
+                flex: 1 1 100%;
+            }
+            .about-me h2 {
+                font-size: 1.8rem;
+            }
+            .about-me p {
+                font-size: 0.9rem;
+            }
+        }
+
+        .about-me h2 {
+            font-size: 2.5rem;
+            color: #d81b60;
+            text-align: center;
+            margin-top: -2rem;
+            margin-bottom: 1rem;
+            background-color: #fce4ec;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            animation: fadeIn 1.5s;
+        }
+
+        .about-me p {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            color: #5c5c5c;
+            max-width: 845px;
+            text-align: center;
+        }
+
+        .profile-picture {
+            flex: 0 1 250px;
+            max-width: 250px;
+        }
+
+        .profile-picture img {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            transform: scale(1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .profile-picture:hover img {
+            transform: scale(1.1);
+        }
+
+        .about-text {
+            flex: 1;
+            text-align: center;
+        }
+
+        .projects {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 300px;
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            height: 540px;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-card h3 {
+            background-color: #f48fb1;
+            color: white;
+            padding: 0.5rem 1rem;
+            min-height: 5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .project-card .content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1rem;
+        }
+
+        .project-card p {
+            color: #666;
+            flex-grow: 1;
+        }
+
+        .project-card a {
+            margin-top: 1rem;
+            color: #4a148c;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: #f06292;
+            color: white;
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .resizable-frame {
+            resize: both;
+            overflow: auto;
+            border: 1px solid #ccc;
+        }
+
+        .resume-section h2 {
+            font-size: 2rem;
+            color: #d81b60;
+            animation: fadeIn 2s;
+            text-align: center;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 2rem auto;
+            max-width: 800px;
+            padding: 1rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #f06292;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-point {
+            position: relative;
+            width: 20px;
+            height: 20px;
+            background-color: #f06292;
+            border-radius: 50%;
+            margin: 0 auto;
+            top: -10px;
+        }
+
+        .timeline-entry {
+            margin: 2rem 0;
+            width: 50%;
+            padding: 1rem;
+            position: relative;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .timeline-entry:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .timeline-entry.left {
+            left: -110%;
+            text-align: right;
+        }
+
+        .timeline-entry.right {
+            left: 10%;
+        }
+
+        .timeline-entry h3 {
+            margin-bottom: 0.5rem;
+            color: #f06d8d;
+        }
+
+
+        .horizontal-timeline {
+        display: flex;
+        overflow-x: auto;
+        gap: 2rem;
+        padding: 1rem;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 12px;
+        background: #fff0f5;
+        box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        .timeline-event {
+        flex: 0 0 250px;
+        scroll-snap-align: start;
+        background-color: white;
+        border: 2px solid #f48fb1;
+        border-radius: 10px;
+        padding: 1rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease;
+        }
+
+        .timeline-event:hover {
+        transform: scale(1.03);
+        box-shadow: 0 8px 20px rgba(244, 143, 177, 0.2);
+        }
+
+        .timeline-event h4 {
+        color: #d81b60;
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+        text-align: center;
+        }
+
+        .timeline-event p {
+        font-size: 0.95rem;
+        color: #555;
+        text-align: center;
+        }
+
+        .timeline-event span {
+        display: block;
+        margin-top: 0.5rem;
+        font-size: 0.85rem;
+        color: #888;
+        }
+
+        .timeline-title {
+            font-size: 2.5rem;
+            color: #d81b60;
+            text-align: center;
+            margin-top: 3rem;
+            margin-bottom: 0.5rem;
+            background-color: #fce4ec;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            animation: fadeIn 1.5s;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .resume-frame {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .resume-frame:hover {
+            transform: scale(1.01);
+            box-shadow: 0 8px 20px rgba(240, 98, 146, 0.3);
+        }
+
+        .download-button {
+            background-color: #f48fb1;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .download-button:hover {
+            background-color: #ec407a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(236, 64, 122, 0.4);
+        }
+
+        html {
+            scroll-padding-top: 300px; /* Adjust based on your header height */
+            scroll-behavior: smooth;
+        }
+        footer a:hover {
+            color: #ffd1dc;
+            transform: scale(1.15);
+            transition: all 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Portfolio</h1>
+        <nav>
+            <a href="#about">About Me</a>
+            <a href="#projects">Projects</a>
+            <a href="#resume">Resume</a>
+            <a href="#timeline">Timeline</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section id="about" class="about-me">
+            <div class="profile-picture">
+                <img src="Ateefa.jpeg" alt="Profile Picture">
+            </div>
+            <div class="about-text">
+                <h2>About Me</h2>
+                <p>Hi! I’m Soli Ateefa, a Computer Science student at UTA, exploring the exciting world of bioinformatics. Driven by curiosity and a passion for tech innovation, I’m diving into research that bridges computer science and healthcare. I can’t wait to connect with others who share a vision for impactful tech solutions!</p>
+            </div>
+        </section>
+    
+    <h2 class="timeline-title" style="margin-top: 0.1rem; margin-bottom: 0.1rem; padding: 0.1rem 0.1rem;">Projects</h2>
+    <section id="projects" class="projects" style="animation: fadeIn 1.5s;">
+        <div class="project-card">
+            <img src="Project1-Aphrodite's Odessey.png" alt="Aphrodite Game Cover">
+            <h3>Aphrodite’s Odyssey</h3>
+            <div class="content">
+                <p>A retro-style 2D dungeon crawler where Aphrodite escapes Cronus’ belly, battles mythic bosses, and rewrites her fate. Inspired by Greek gods, Jonah’s tale, and pixel-perfect chaos.</p>
+                <a href="https://github.com/sateefa2904/Aphrodites-Odessey" target="_blank">Play or View Code →</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <img src="results/stereo_pair_loop.gif" alt="Stereo Vision Animation">
+            <h3>Stereo Depth Estimation on Cryo-EM Slices</h3>
+            <div class="content">
+                <p>Demonstrates depth from stereo pairs of Cryo-EM slices. Features a dynamic disparity GIF showing slice transitions.</p>
+                <a href="https://github.com/sateefa2904/stereo-depth-cryoem" target="_blank">View on GitHub →</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <img src="conf_matrix_logreg.png" alt="Confusion Matrix Visualization">
+            <h3>Biosequence Classifier</h3>
+            <div class="content">
+                <p>A DNA classification pipeline using Logistic Regression, Neural Networks, SHAP, and Ensemble Learning. Visualized with metrics like AUC, cross-validation, and feature impact.</p>
+                <a href="https://github.com/sateefa2904/Biosequence-Classifier" target="_blank">View on GitHub →</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="resume" class="resume-section" style="animation: fadeIn 1.5s;">
+        <h2 class="timeline-title">My Resume</h2>
+        <p style="text-align: center; margin-bottom: 0.2rem; font-style: italic; color: #7a4f5d; font-size: 1rem; opacity: 0.85;">
+            View my resume below or download it to keep a copy.
+        </p>
+            
+        <div class="resume-frame">
+            <iframe src="Ateefa_Soli_Winter24Updated.pdf" width="100%" height="500px" style="border: none;"></iframe>
+        </div>
+    
+        <div style="text-align: center; margin-top: 1rem;">
+            <a href="Ateefa_Soli_Winter24Updated.pdf" download class="download-button">Download Resume</a>
+        </div>
+    </section>
+    
+    
+    <section id="timeline" style="animation: fadeIn 1.5s;">
+        <h2 class="timeline-title">My Journey</h2>
+        <div class="horizontal-timeline">
+          <div class="timeline-event">
+            <h4>2021</h4>
+            <p>Clinical Research Intern at UTSW<br><span>Visualized infant growth data to improve prediction model accuracy by 30%.</span></p>
+          </div>
+          <div class="timeline-event">
+            <h4>2022</h4>
+            <p>Started Computer Science at UTA<br><span>Declared Biomedical Engineering minor, joined SWE & Girls Who Code.</span></p>
+          </div>
+          <div class="timeline-event">
+            <h4>2023</h4>
+            <p>Joined Bioinformatics Lab<br><span>Conducted vision-based model evaluation using MediaPipe and DL frameworks.</span></p>
+          </div>
+          <div class="timeline-event">
+            <h4>2024</h4>
+            <p>Internship at UTSW<br><span>Developed stereo vision depth models for Cryo-EM in Python, FORTRAN, & C++.</span></p>
+          </div>
+          <div class="timeline-event">
+            <h4>2025</h4>
+            <p>Launch Personal Projects<br><span>Created Aphrodite’s Odyssey, biosequence classifier, and portfolio website.</span></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+        <p style="margin-bottom: 1rem;">Let’s connect!</p>
+        <div style="display: flex; justify-content: center; gap: 1.5rem; font-size: 1.8rem;">
+          <a href="https://www.linkedin.com/in/solia/" target="_blank" style="color: white;" aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="mailto:soa4043@mavs.uta.edu" style="color: white;" aria-label="Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+          <a href="https://github.com/sateefa2904" target="_blank" style="color: white;" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+      </footer>
+      
+    <script>
+        window.addEventListener('load', function () {
+            if (window.location.hash) {
+                // Clear the hash to prevent jumping to it
+                history.replaceState(null, null, ' ');
+            }
+            // Now scroll to top after short delay to override browser behavior
+            setTimeout(() => {
+                window.scrollTo({ top: 0, behavior: 'instant' });
+            }, 0);
+        });
+    </script>
+    
+
+</body>
+</html>
